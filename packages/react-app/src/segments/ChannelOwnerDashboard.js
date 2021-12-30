@@ -1,46 +1,43 @@
 import React from "react";
-
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Section, Content } from "components/SharedStyling";
 
 import SendNotifications from "components/SendNotifications";
 import ChannelSettings from "components/ChannelSettings";
+import ChannelDetails from "components/ChannelDetails";
+import CreateChannel from "components/CreateChannel";
+import { useSelector } from "react-redux";
 
 // CREATE CHANNEL OWNER DASHBOARD
-function ChannelOwnerDashboard({
-  epnsReadProvider, epnsWriteProvider, epnsCommReadProvider, epnsCommWriteProvider,
-  channelAccount
-}) {
-  React.useEffect(() => {});
-  const [key, setKey] = React.useState(50);
-
-  // RRENDER
+function ChannelOwnerDashboard() {
+  const { channelDetails, delegatees } = useSelector((state) => state.admin);
   return (
     <>
       <Section>
-        <Content padding="0px">
-          <ChannelSettings
-            epnsReadProvider={epnsReadProvider}
-            epnsCommReadProvider={epnsCommReadProvider}
-            epnsWriteProvider={epnsWriteProvider}
-            epnsCommWriteProvider={epnsCommWriteProvider}
-            setKey={setKey}
-          />
-          <SendNotifications
-            key={key}
-            epnsReadProvider={epnsReadProvider}
-            epnsCommReadProvider={epnsCommReadProvider}
-            epnsWriteProvide={epnsWriteProvider}
-            epnsCommWriteProvider={epnsCommWriteProvider}
-            channelAccount={channelAccount}
-          />
-        </Content>
+        <ModifiedContent>
+          {/* display the create channel page if there are no details */}
+          {!channelDetails ? <CreateChannel /> : ""}
+          {/* display the create channel page if there are no details */}
+          {/* display the channel settings */}
+          {channelDetails ? <ChannelSettings /> : ""}
+          {/* display the channel settings */}
+          {/* display the details about the profile of the channel */}
+          {channelDetails ? <ChannelDetails /> : ""}
+          {/* display the details about the profile of the channel */}
+          {/* display the notifications settings */}
+          {channelDetails || delegatees?.length ? <SendNotifications /> : ""}
+          {/* display the notifications settings */}
+        </ModifiedContent>
       </Section>
     </>
   );
 }
 
 // css styles
+const ModifiedContent = styled(Content)`
+  padding: 0;
+  position: relative;
+`;
 
 // Export Default
 export default ChannelOwnerDashboard;
