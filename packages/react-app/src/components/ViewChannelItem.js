@@ -19,6 +19,7 @@ import { cacheChannelInfo } from "redux/slices/channelSlice";
 // Create Header
 function ViewChannelItem({ channelObjectProp }) {
   const dispatch = useDispatch();
+
   const {
     epnsReadProvider,
     epnsWriteProvider,
@@ -108,6 +109,7 @@ function ViewChannelItem({ channelObjectProp }) {
         channelJson = await ChannelsDataStore.instance.getChannelJsonAsync(
           channelObject.addr
         );
+        
         dispatch(
           cacheChannelInfo({
             address: channelObject.addr,
@@ -135,6 +137,7 @@ function ViewChannelItem({ channelObjectProp }) {
       setChannelJson({ ...channelJson, addr: channelObject.addr });
       setLoading(false);
     } catch (err) {
+      console.log("there was an error", err);
       setIsBlocked(true);
     }
   };
