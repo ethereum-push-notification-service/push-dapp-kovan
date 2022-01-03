@@ -8,7 +8,7 @@ import {
   api,
   utils,
   NotificationItem,
-} from "@epnsproject/frontend-sdk-staging";
+} from "@epnsproject/frontend-sdk";
 import {
   addPaginatedNotifications,
   incrementPage,
