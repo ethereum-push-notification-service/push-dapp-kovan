@@ -152,6 +152,7 @@ function ViewChannels() {
                   />
                   <SearchIconImage src={searchIcon} alt="" />
                 </InputWrapper>
+                <Faucets />
               </Header>
             )}
 
