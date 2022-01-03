@@ -141,7 +141,7 @@ function ViewChannels() {
         ) : (
           <Items id="scrollstyle-secondary" style={{position:"relative",padding:"0 1rem"}}>
             {!loading && (
-              <Header>
+              <Header style={{minHeight: "140px"}}>
                 <InputWrapper>
                   <SearchBar
                     type="text"
