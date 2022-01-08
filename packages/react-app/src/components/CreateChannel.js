@@ -349,7 +349,7 @@ function CreateChannel() {
                 accept="image/jpeg,image/png"
               />
             </Item>
-            {/* <Item align="flex-end">
+            <Item align="flex-end">
               <Minter
                 onClick={() => {
                   mintDai();
@@ -360,7 +360,7 @@ function CreateChannel() {
                   <PoolShare>Get Free DAI for Channel</PoolShare>
                 </Pool>
               </Minter>
-            </Item> */}
+            </Item>
           </Content>
         </Section>
       )}

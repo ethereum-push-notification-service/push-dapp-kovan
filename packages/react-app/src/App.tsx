@@ -10,7 +10,7 @@ import Home from "pages/Home";
 import Header from "segments/Header";
 import styled from "styled-components";
 import { Item, ItemH, Span, H2, B, A } from "components/SharedStyling";
-
+import UnderProgressModal from './components/UnderProgressModal';
 import "react-toastify/dist/ReactToastify.min.css";
 
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ const web3Connectors = {
 };
 
 export default function App() {
-  const { connector, activate, active, error } = useWeb3React<Web3Provider>();
+  const { connector, activate, active, error, chainId } = useWeb3React<Web3Provider>();
   const [activatingConnector, setActivatingConnector] = React.useState<
     AbstractConnector
   >();
@@ -56,19 +56,24 @@ export default function App() {
 
   return (
     <>
+    
       <HeaderContainer>
         <Header/>
       </HeaderContainer>
 
       <ParentContainer>
+        
         {active && !error && (
           <HomeContainer>
+
             <Home />
           </HomeContainer>
         )}
 
         {!active && (
           <Item>
+            {chainId == 1 && <UnderProgressModal/>}
+
             <ProviderLogo
               src="./epnshomelogo.png"
               srcSet={"./epnshomelogo@2x.png 2x, ./epnshomelogo@2x.png 3x"}
